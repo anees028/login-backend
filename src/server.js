@@ -12,6 +12,9 @@ const cors = require('cors');
 const helmet = require('helmet');
 
 
+//Calling controllers
+const user = require('./controllers/user.controller')
+
 const logger = require('./util/logger');
 
 // Load .env Enviroment Variables to process.env
@@ -52,7 +55,7 @@ app.use('*', (req, res, next) => {
 // Assign Routes
 
 app.use('/', require('./routes/router.js'));
-
+app.use('/user',user)
 
 // Handle errors
 app.use(errorHandler());
