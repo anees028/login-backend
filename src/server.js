@@ -11,6 +11,7 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const helmet = require('helmet');
 
+const db = require('./sequelize/sequelize');
 
 //Calling controllers
 const user = require('./controllers/user.controller')
@@ -29,6 +30,13 @@ require('mandatoryenv').load([
 ]);
 
 const { PORT } = process.env;
+
+db.authenticate().then(() => {
+    console.log('Connection has been established successfully.');
+  })
+  .catch(err => {
+    console.error('Unable to connect to the database:', err);
+  });
 
 
 // Instantiate an Express Application

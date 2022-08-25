@@ -24,6 +24,7 @@
         "mandatoryenv": "^1.1.1",
         "module-alias": "^2.2.2",
         "morgan": "^1.9.1",
+        "mysql": "^2.18.1",
         "mysql2": "^1.7.0",
         "nodemon": "^2.0.19",
         "rotating-file-stream": "^1.4.6",
