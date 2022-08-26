@@ -8,5 +8,14 @@ router.get('/getUserByMiddleware',_userMiddleware.requestTime,_userService.getUs
 router.post('/postNameByMiddleware',_userMiddleware.validateUser,_userService.postNameByMiddleware );
 
 
+//performing CRUD operation.... 
+router.post('/addUser', _userService.insertUser);
+router.get('/getUsers', _userService.getUsers);
+router.get('/getUserById', _userService.getUserById);
+router.get('/getUserByName', _userService.getUserByName);
+router.get('/deleteUserById', _userService.deleteUserById);
+
+router.post('/resetUserPassword', _userService.resetUserPassword);
+
 
 module.exports = router;
