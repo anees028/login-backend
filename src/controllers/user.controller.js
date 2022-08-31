@@ -15,6 +15,9 @@ router.get('/getUserById', _userService.getUserById);
 router.get('/getUserByName', _userService.getUserByName);
 router.get('/deleteUserById', _userService.deleteUserById);
 
+router.post('/userLogin',_userMiddleware.validateUser , _userService.userLogin);
+
+
 router.post('/resetUserPassword', _userService.resetUserPassword);
 
 

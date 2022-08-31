@@ -31,13 +31,14 @@ async function postNameByMiddleware(req, res) {
 
 async function insertUser(req, res) {
     let query = 'insert into users (name,password,email) VALUES (?,?,?)'
-    req.body.password = await bcrypt.hashSync(req.body.password, 10);
+    const salt = await bcrypt.genSalt(10);
+    let hash = await bcrypt.hash(req.body.password,salt);
     let data = await sequelize.query(query,
         {
-            replacements: [req.body.name, req.body.password, req.body.email],
+            replacements: [req.body.username, hash, req.body.email],
             type: QueryTypes.INSERT
         })
-    res.json(data)
+    res.send({status:200, message:'User added successfully', error: false, success: true})
 }
 
 async function getUsers(req, res) {
@@ -106,7 +107,9 @@ async function deleteUserById(req, res) {
 }
 
 
-
+async function userLogin(req, res){
+    res.send({status: 200, message: 'Login Successfull ', success: true, error:false });
+}
 
 
 //Resetting Password..
@@ -125,6 +128,7 @@ module.exports = {
     getUserById,
     getUserByName,
     deleteUserById,
-    resetUserPassword
+    resetUserPassword,
+    userLogin
 }
 
